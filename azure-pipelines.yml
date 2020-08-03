@@ -209,6 +209,9 @@ jobs:
           env:
             PYTEST_ADDOPTS: '-m "not (notebook or automl)"'
             COVERAGE_PROCESS_START: 'setup.cfg'
+        - script: 'python -m unittest econml.tests.test_dml.TestDML.test_cate_api'
+          displayName: 'Drill into test failures'
+          condition: succeededOrFailed()
         - task: PublishTestResults@2
           displayName: 'Publish Test Results **/test-results.xml'
           inputs:
